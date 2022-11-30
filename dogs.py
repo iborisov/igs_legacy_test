@@ -1,35 +1,17 @@
-class Dog(object):
-    def __init__(self, name, energy=100, init_parameters=dict()):
-        if init_parameters:
-            self.name = init_parameters['name']
-            if 'energy' in init_parameters.keys():
-                condition = init_parameters["energy"]
-            else:
-                condition = energy
-        else:
-            self.name = name
-            condition = energy
-
-        self.energy = condition
+from abstract_animal import AbstractAnimal
 
 
-    def say(self):
-        print("Hello, i'm Dog and my name is "+str(self.name))
-
+class Dog(AbstractAnimal):
+    def __init__(self, name, energy=100, **kwargs):
+        super().__init__(name, energy, **kwargs)
 
     def run(self):
-        print("My name is "+str(self.name)+" and i running")
+        print(f"My name is {self.name} and I'm running")
         self.energy = self.energy - 10
 
-
     def swim(self):
-        print("My name is "+str(self.name)+" and i swimming")
+        print(f"My name is {self.name} and I'm swimming")
         self.energy = self.energy - 30
 
-
     def fly(self):
-        print("My name is "+str(self.name)+" and i can't fly")
-
-
-    def get_energy(self):
-        return self.energy
+        print(f"My name is {self.name} and I can't fly")
